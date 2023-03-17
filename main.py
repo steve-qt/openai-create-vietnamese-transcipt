@@ -11,8 +11,11 @@ def create_transcription():
   audio_file = open("hi-vietnam.mp3", "rb")
   transcript = openai.Audio.transcribe("whisper-1", audio_file)
   a = binascii.hexlify(transcript.text.encode('cp1258', errors='backslashreplace'))
-  print(binascii.unhexlify(a).decode('unicode-escape'))
+  print("VIETNAMESE: {}".format(binascii.unhexlify(a).decode('unicode-escape')))
 
+  audio_file = open("hi-vietnam.mp3", "rb")
+  translate = openai.Audio.translate("whisper-1", audio_file)
+  print("ENGLISH: {}".format(translate.text))
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     create_transcription()
